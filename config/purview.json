@@ -1,0 +1,8 @@
+{
+  "purview": {
+    "no-login": [
+      {"match":"/^\\/adm(.*)$/", "login":"admin-login"},
+      {"match":"/^\\/user(.*)$/", "login":"user-login"}
+    ]
+  }
+}

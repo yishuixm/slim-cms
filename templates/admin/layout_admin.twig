@@ -1,0 +1,12 @@
+{% extends "boilerplate.twig" %}
+
+{% block title %}{% endblock %}
+{% block style %}{% endblock %}
+{% block body %}
+    <div id="container" class="container">
+        <div id="header" class="header">{% block header %}{% endblock %}</div>
+        <div id="slider" class="slider">{% block slider %}{% endblock %}</div>
+        <div id="content" class="content">{% block content %}{% endblock %}</div>
+    </div>
+{% endblock %}
+{% block script %}{% endblock %}
