@@ -5,8 +5,8 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
     ]);
 })->setName('profile');
 
+$app->get('/admin/login', 'Admin\Controller\PublicController:login')->setName("login");
+$app->get('/admin', 'Admin\Controller\PublicController:home')->setName("admin-home");
 
-$app->get('/adm', 'Admin\Controller\PublicController:home')->setName("admin-home");
-$app->get('/login/adm', 'Admin\Controller\PublicController:login')->setName("admin-login");
 
 

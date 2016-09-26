@@ -25,6 +25,7 @@ class ComposerStaticInit4616dd34b3749f2213a13cbfddc24574
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
         ),
         'N' => 
@@ -62,6 +63,10 @@ class ComposerStaticInit4616dd34b3749f2213a13cbfddc24574
         array (
             0 => __DIR__ . '/..' . '/akrabat/rka-ip-address-middleware/src',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -94,10 +99,6 @@ class ComposerStaticInit4616dd34b3749f2213a13cbfddc24574
         ),
         'P' => 
         array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
-            ),
             'Pimple' => 
             array (
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',

@@ -46,11 +46,11 @@ class RouteInit
             "uid[=]"            => $user_id
         ]);
         $user_accessible = unserialize($user_accessible);
-        $accessible_id = $db->get("accessible", "id", [
+        $accessible = $db->get("accessible", ["id","login_url"], [
             "path[=]"            => $path
         ]);
 
-        return in_array($accessible_id, $user_accessible);
+        return in_array($accessible['id'], $user_accessible)?:$accessible['login_url'];
     }
 
     /**
@@ -66,10 +66,12 @@ class RouteInit
 
         $Config = new Config($this->ci->get('db'), 'config', true);
 
-        $configs = $Config->select([],["app","name","value"]);
+        $configs = $Config->select("config",["app","name","value"], []);
+
         foreach ($configs['result'] as $config) {
             $config_list["{$config['app']}.{$config['name']}"] = $config['value'];
         }
+
 
 
         $session = $this->ci->get('session');
@@ -77,21 +79,26 @@ class RouteInit
         $uri = $request->getUri();
         $path = $uri->getPath();
 
+        if(array_key_exists("COMMON.LOGIN_URL", $config_list)){
+            $login_url = unserialize($config_list["COMMON.LOGIN_URL"]);
+        }else{
+            $login_url = [];
+        }
 
-        $login_url = unserialize($config_list["COMMON.LOGIN_URL"]);
-
-
-        foreach ($login_url as $url){
-            if(!preg_match($url, $path)){
-                continue;
-            }
-            if(!$this->isLogined()){
-                return $response->withRedirect('/login', 303);
-            }
-            if(!$this->isAccessible($path)){
-                $response->withRedirect('/pessimists', 303);
+        if(is_array($login_url)){
+            foreach ($login_url as $url){
+                if(!preg_match("/{$url}/", $path)){
+                    continue;
+                }
+                if(!$this->isLogined()){
+                    return $response->withRedirect('/login', 303);
+                }
+                if(!$this->isAccessible($path)){
+                    $response->withRedirect('/pessimists', 303);
+                }
             }
         }
+
 
         return $next($request, $response);
     }
