@@ -1,4 +1,4 @@
-{% extends "boilerplate.twig" %}
+{% extends "layout.twig" %}
 
 {% block title %}{% endblock %}
 {% block style %}{% endblock %}
@@ -9,10 +9,4 @@
         <div id="content" class="content">{% block content %}{% endblock %}</div>
     </div>
 {% endblock %}
-{% block script %}
-
-    <script>
-        // myscript
-        {% block myscript %}{% endblock %}
-    </script>
-{% endblock %}
+{% block jsscript %}{% endblock %}

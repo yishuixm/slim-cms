@@ -22,3 +22,4 @@
 }());
 
 // Place any jQuery/helper plugins in here.
+window.layer || document.write('<script src="/js/vendor/layer/layer.js"><\/script>')

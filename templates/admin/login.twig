@@ -1,41 +1,40 @@
 {% extends 'admin/layout_admin.twig' %}
 
-{% block title %}login{% endblock %}
-{% block style %}{% endblock %}
+{% block title %}用户登录{% endblock %}
+{% block style %}
+    <style>
+        body{
+            background-color: #eeeeee;
+        }
+
+        #loginContainer.container{
+            max-width: 460px;
+        }
+    </style>
+{% endblock %}
 {% block body %}
-    <form id="loginForm" action="" method="POST">
-        <fieldset>
-            <legend>用户登录</legend>
-            <p>
-                <label for="">手机号</label>
-                <input type="text" name="username" placeholder="请输入手机号">
-            </p>
-            <p>
-                <label for="">登录密码</label>
-                <input type="text" name="username" placeholder="请输入登录密码">
-            </p>
-            {#<p>#}
+    <div id="loginContainer" class="container">
+        <form id="loginForm" action="" method="POST">
+            <fieldset>
+                <legend>用户登录</legend>
+                <p>
+                    <label for="">手机号</label>
+                    <input class="form-control" type="text" name="username" placeholder="请输入手机号">
+                </p>
+                <p>
+                    <label for="">登录密码</label>
+                    <input class="form-control" type="text" name="username" placeholder="请输入登录密码">
+                </p>
+                {#<p>#}
                 {#<label for="">验证码</label>#}
                 {#<input type="text" name="username" placeholder="请输入验证码">#}
                 {#<button type="button">发送验证码</button>#}
-            {#</p>#}
-        </fieldset>
-    </form>
-{% endblock %}
+                {#</p>#}
+                <p>
+                    <button class="btn btn_primary" type="submit">立即登录</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
 
-
-{% block myscript %}
-{#// 按钮等待时间#}
-{#function btnWaitSeconds(el, text, time) {#}
-    {#$(el).text('等待 ' + time + ' 秒');#}
-    {#if (time > 0) {#}
-        {#$(el).prop('disabled', true);#}
-        {#setTimeout(function() {#}
-            {#btnWaitSeconds(el, text, time - 1);#}
-        {#}, 1000);#}
-    {#} else {#}
-        {#$(el).prop('disabled', false);#}
-        {#$(el).text(text);#}
-    {#}#}
-{#}#}
 {% endblock %}
