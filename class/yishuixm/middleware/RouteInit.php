@@ -90,10 +90,17 @@ class RouteInit
                 if(!preg_match("/{$url}/", $path)){
                     continue;
                 }
+
                 if(!$this->isLogined()){
-                    return $response->withRedirect('/login', 303);
-                }
-                if(!$this->isAccessible($path)){
+                    $login_info = explode('/',$path);
+                    $login_info = array_filter($login_info);
+
+                    $login_url = $router->pathfor("{$login_info[min(array_keys($login_info))]}-login");
+
+                    if($login_url !== $path){
+                        return $response->withRedirect($login_url, 303);
+                    }
+                }elseif(!$this->isAccessible($path)){
                     $response->withRedirect('/pessimists', 303);
                 }
             }

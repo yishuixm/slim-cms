@@ -29,6 +29,7 @@ function require_file($dir){
 
 require_file(__DIR__.'/function/');
 
+
 $settings = require __DIR__ . '/settings.php';
 $app = new \Slim\App($settings);  // 实例化APP
 
@@ -36,6 +37,19 @@ $container = $app->getContainer();
 
 require_once __DIR__ . '/dependencies.php'; // 加载依赖
 require_once __DIR__ . '/middleware.php'; // 加载中间件
-require_once __DIR__ . '/routes.php'; // 加载路由
+$router_dir = __DIR__.'/routes/';
+foreach (scandir($router_dir) as $file){
+    if(in_array($file,['.','..'])){
+        continue;
+    }
+    if(file_exists($router_dir.$file)){
+        if(is_dir($router_dir.$file)){
+            require_file($router_dir.$file);
+            continue;
+        }else{
+            require_once $router_dir.$file;
+        }
+    }
+}
 
 $app->run(); // 执行APP
